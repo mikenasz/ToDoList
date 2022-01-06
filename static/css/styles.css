@@ -1,0 +1,30 @@
+body{
+    background-color: #fafafa;
+}
+.completed{
+    background-color: #eeeeee;
+    text-decoration: line-through;
+    margin: 10px;
+    padding: 10px;
+    border: silver solid 1px;
+    border-radius: 0.25em;
+}
+.not-completed{
+    background-color: white;
+    margin: 10px;
+    padding: 10px;
+    border: silver solid 1px;
+    border-radius: 0.25em;
+
+}
+#created-at{
+    color: darkgray;
+    font-size: 0.7em;
+}
+#delete-task{
+    color: rgba(254, 105, 147, 1);
+    background-color: rgba(254,105,147,0.1);
+    border-radius: 3px;
+    line-height: 2em;
+    padding: 0.2em;
+}

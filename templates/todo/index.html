@@ -1,0 +1,57 @@
+{% extends "todo/base.html" %}
+
+{% block content %}
+{% if messages %}
+{% for message in messages %}
+<h3 class="text-success">{{ message }}</h3>
+{% endfor %}
+{% endif %}
+    <form class="input-group mb-3" method="post" action=" {% url 'add' %}">
+    {{ form.task_name }}
+    {% csrf_token %}
+    <button class="btn btn-primary" type="submit">ADD</button>
+    </form>
+
+{% for tasks in tasks %}
+    {% if tasks.completed == True %}
+        <div class="completed">
+        <div class="row">
+            <div class="col-md-6">
+               <h5 class="fw-bold">{{ tasks.task_name }}</h5>
+               <p id="created-at">Created at: {{ tasks.created_at }}</p>
+
+             </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="{% url 'update' tasks.id %}" class="btn btn-primary btn-sm">Update</a>
+                    <a href="{% url 'delete' tasks.id %}" class="btn btn-danger btn-sm">Delete</a>
+                </div>
+        </div>
+        </div>
+    {% else %}
+        <div class="not-completed">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 class="fw-bold"> {{ tasks.task_name }}</h5>
+                    <p id="created-at">Created at: {{ tasks.created_at }}</p>
+
+                </div>
+                <div class="col-md-6 text-md-end">
+                    {% if tasks.completed != True %}
+                        <a href="{% url 'complete_task' tasks.id %}" class="btn btn-success btn-sm">Completed</a>
+                    {% endif %}
+                    <a href="{% url 'update' tasks.id %}" class="btn btn-primary btn-sm">Update</a>
+                    <a href="{% url 'delete' tasks.id %}" class="btn btn-danger btn-sm ">Delete</a>
+                </div>
+            </div>
+
+        </div>
+    {% endif %}
+
+
+
+
+{% endfor %}
+
+{% endblock %}
+
+
